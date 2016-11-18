@@ -21,7 +21,8 @@ class SignupForm extends Component {
   }
 
   onSubmit(e) {
-    e.preventDeafult();
+    e.preventDefault();
+    this.props.userSignupRequest(this.state);
   }
 
   render() {
@@ -49,7 +50,7 @@ class SignupForm extends Component {
           <input
             value={this.state.password}
             onChange={this.onChange}
-            type="text"
+            type="password"
             name="password"
             className="form-control"
           />
@@ -60,7 +61,7 @@ class SignupForm extends Component {
           <input
             value={this.state.password_confirmation}
             onChange={this.onChange}
-            type="text"
+            type="password"
             name="password_confirmation"
             className="form-control"
           />
@@ -89,6 +90,10 @@ class SignupForm extends Component {
       </form>
     );
   }
+}
+
+SignupForm.propTypes = {
+  userSignupRequest: React.PropTypes.func.isRequired
 }
 
 export default SignupForm;

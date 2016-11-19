@@ -9,10 +9,12 @@ class SignupForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      password_confirmation: '',
-      time_zone: '',
+      user_params: {
+        email: '',
+        password: '',
+        password_confirmation: '',
+        time_zone: ''
+      },
       errors: {},
       isLoading: false
     }
@@ -21,15 +23,17 @@ class SignupForm extends Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+  onChange(event) {
+    let updated_params = this.state.user_params
+    updated_params[event.target.name] = event.target.value
+    this.setState({ user_params: updated_params })
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
     if(this.isValid()) {
       this.setState({ errors: {}, isLoading: true })
-      this.props.userSignupRequest(this.state)
+      this.props.userSignupRequest(this.state.user_params)
         .then((response) => {
           console.log('success');
           console.log(response);
@@ -44,7 +48,7 @@ class SignupForm extends Component {
   }
 
   isValid() {
-    const { errors, isValid } = validateInput(this.state);
+    const { errors, isValid } = validateInput(this.state.user_params);
     
     if (!isValid) {
       this.setState({ errors: errors });
@@ -67,7 +71,7 @@ class SignupForm extends Component {
           error={errors.email}
           label="Email"
           onChange={this.onChange}
-          value={this.state.email}
+          value={this.state.user_params.email}
           field="email"
         />
 
@@ -75,7 +79,7 @@ class SignupForm extends Component {
           error={errors.password}
           label="Password"
           onChange={this.onChange}
-          value={this.state.password}
+          value={this.state.user_params.password}
           field="password"
           type="password"
         />
@@ -84,7 +88,7 @@ class SignupForm extends Component {
           error={errors.password_confirmation}
           label="Password Comfirmation"
           onChange={this.onChange}
-          value={this.state.password_confirmation}
+          value={this.state.user_params.password_confirmation}
           field="password_confirmation"
           type="password"
         />
@@ -92,7 +96,7 @@ class SignupForm extends Component {
         <div className={classnames("form-group", { 'has-error': errors.time_zone })}>
           <label className="control-label">Timezone</label>
           <select
-            value={this.state.time_zone}
+            value={this.state.user_params.time_zone}
             onChange={this.onChange}
             type="text"
             name="time_zone"

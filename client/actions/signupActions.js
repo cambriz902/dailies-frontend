@@ -1,8 +1,8 @@
 import axios from 'axios';
 
+const URL = 'http://localhost:3000'
 export function userSignupRequest(userData) {
-  console.log(userData)
   return dispatch => {
-    return axios.post('/api/users', userData);
+    return axios.post(`${URL}/api/users`, userData);
   }
 }

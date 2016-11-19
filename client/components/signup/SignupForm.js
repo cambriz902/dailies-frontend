@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
+import classnames from 'classnames';
+import validateInput from './validations'
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class SignupForm extends Component {
   constructor(props) {
@@ -9,7 +12,9 @@ class SignupForm extends Component {
       email: '',
       password: '',
       password_confirmation: '',
-      time_zone: ''
+      time_zone: '',
+      errors: {},
+      isLoading: false
     }
 
     this.onChange = this.onChange.bind(this)
@@ -22,10 +27,34 @@ class SignupForm extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.userSignupRequest(this.state);
+    if(this.isValid()) {
+      this.setState({ errors: {}, isLoading: true })
+      this.props.userSignupRequest(this.state)
+        .then((response) => {
+          console.log('success');
+          console.log(response);
+          this.setState({ isLoading: false })
+        })
+        .catch((error) => {
+          console.log('failed request');
+          console.log(error)
+          this.setState({ isLoading: false })
+        });
+    }
+  }
+
+  isValid() {
+    const { errors, isValid } = validateInput(this.state);
+    
+    if (!isValid) {
+      this.setState({ errors: errors });
+    }
+
+    return isValid;
   }
 
   render() {
+    const { errors } = this.state;
     const options = map(timezones, (val, key) =>
       <option key={val} value={val}>{key}</option>
     );
@@ -34,40 +63,33 @@ class SignupForm extends Component {
       <form onSubmit={this.onSubmit}>
         <h1>Join Our Community</h1>
 
-        <div className="form-group">
-          <label className="control-label">Email</label>
-          <input
-            value={this.state.email}
-            onChange={this.onChange}
-            type="text"
-            name="email"
-            className="form-control"
-          />
-        </div>
+        <TextFieldGroup
+          error={errors.email}
+          label="Email"
+          onChange={this.onChange}
+          value={this.state.email}
+          field="email"
+        />
 
-        <div className="form-group">
-          <label className="control-label">Password</label>
-          <input
-            value={this.state.password}
-            onChange={this.onChange}
-            type="password"
-            name="password"
-            className="form-control"
-          />
-        </div>
+        <TextFieldGroup
+          error={errors.password}
+          label="Password"
+          onChange={this.onChange}
+          value={this.state.password}
+          field="password"
+          type="password"
+        />
 
-        <div className="form-group">
-          <label className="control-label">Password Confirmation</label>
-          <input
-            value={this.state.password_confirmation}
-            onChange={this.onChange}
-            type="password"
-            name="password_confirmation"
-            className="form-control"
-          />
-        </div>
+        <TextFieldGroup
+          error={errors.password_confirmation}
+          label="Password Comfirmation"
+          onChange={this.onChange}
+          value={this.state.password_confirmation}
+          field="password_confirmation"
+          type="password"
+        />
 
-        <div className="form-group">
+        <div className={classnames("form-group", { 'has-error': errors.time_zone })}>
           <label className="control-label">Timezone</label>
           <select
             value={this.state.time_zone}
@@ -79,11 +101,11 @@ class SignupForm extends Component {
             <option value="" disabled>Choose Your Timezone </option>
             {options}
           </select>
-
+          {errors.time_zone && <span className="help-block">{errors.time_zone}</span>}
         </div>
 
         <div className="form-group">
-          <button className="btn btn-primary btn-lg">
+          <button disabled={this.state.isLoading} className="btn btn-primary btn-lg">
             Sign up
           </button>
         </div> 

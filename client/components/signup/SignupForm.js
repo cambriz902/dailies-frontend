@@ -41,7 +41,7 @@ class SignupForm extends Component {
           });
           this.context.router.push('/');
         })
-        .catch((error) => {
+        .catch((data) => {
           this.setState({ isLoading: false })
         });
     }

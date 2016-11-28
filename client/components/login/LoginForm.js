@@ -8,8 +8,10 @@ class LoginForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: '',
-      password: '',
+      login_params: {
+        email: '',
+        password: ''
+      },
       errors: {},
       isLoading: false
     };
@@ -24,36 +26,43 @@ class LoginForm extends Component {
     if(!isValid) {
       this.setState({ errors });
     }
+
+    return isValid;
   }
 
   onSubmit(event) {
     event.preventDefault();
     if(this.isValid()) {
       this.setState({ errors: {}, isLoading: true});
-      this.props.login(this.state)
+      this.props.login(this.state.login_params)
         .then((response) => {
           this.context.router.push('/');
         })
         .catch((error) => {
-          this.setState({ isLoading: false })
+          this.setState({ errors: { form: error.response.data.errors }, isLoading: false })
         });
     }
   }
 
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
+    let updated_params = this.state.login_params
+    updated_params[event.target.name] = event.target.value
+    this.setState({ login_params: updated_params })
   }
 
   render() {
-    const { errors, email, password, isLoading } = this.state;
+    const { errors, isLoading } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
+
+        { errors.form && <div className="alert alert-danger">{errors.form}</div>}
         <h1>Login</h1>
 
         <TextFieldGroup
           field="email"
           label="Email"
-          value={email}
+          value={this.state.login_params.email}
           error={errors.email}
           onChange={this.onChange}
         />
@@ -61,7 +70,7 @@ class LoginForm extends Component {
         <TextFieldGroup
           field="password"
           label="Password"
-          value={password}
+          value={this.state.login_params.password}
           error={errors.password}
           onChange={this.onChange}
           type="password"

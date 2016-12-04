@@ -6,7 +6,7 @@ import { logout } from '../actions/authActions';
 class NavigationBar extends Component {
   constructor(props) {
     super(props)
-    this.logout. = this.logout..bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   logout(event) {
@@ -19,6 +19,7 @@ class NavigationBar extends Component {
 
     const userLinks = (
       <ul className="nav navbar-nav navbar-right">
+        <li><Link to="/new-daily-category-page">Create Category</Link></li>
         <li><a href="#" onClick={this.logout}>Logout</a></li>
       </ul>
     );

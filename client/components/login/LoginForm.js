@@ -45,7 +45,6 @@ class LoginForm extends Component {
   }
 
   onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
     let updated_params = this.state.login_params
     updated_params[event.target.name] = event.target.value
     this.setState({ login_params: updated_params })

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { createDailyCategory } from '../../actions/dailyCategoryActions';
 import validateInput from './validations';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 
-class DailyCategoryFrom extends Component {
+class DailyCategoryForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -36,7 +34,6 @@ class DailyCategoryFrom extends Component {
             type: 'success',
             text: 'Created Daily Category Successfully!'
           });
-          this.context.router.push('/');
         })
         .catch((data) => {
           this.setState({ isLoading: false });
@@ -75,13 +72,13 @@ class DailyCategoryFrom extends Component {
   }
 }
 
-DailyCategoryFrom.propTypes = {
+DailyCategoryForm.propTypes = {
   createDailyCategory: React.PropTypes.func.isRequired,
   addFlashMessage: React.PropTypes.func.isRequired
 }
 
-SignupForm.contextTypes = {
+DailyCategoryForm.contextTypes = {
   router: React.PropTypes.object.isRequired
 }
 
-export default connect(null, { createDailyCategory })(DailyCategoryFrom);
+export default DailyCategoryForm;

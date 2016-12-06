@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classnames from 'classnames';
-import validateInput from './validations'
+import validateInput from './validations';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class SignupForm extends Component {
@@ -42,7 +42,7 @@ class SignupForm extends Component {
           this.context.router.push('/');
         })
         .catch((data) => {
-          this.setState({ isLoading: false })
+          this.setState({ isLoading: false });
         });
     }
   }
@@ -58,7 +58,7 @@ class SignupForm extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { user_params, errors } = this.state;
     const options = map(timezones, (val, key) =>
       <option key={val} value={val}>{key}</option>
     );
@@ -71,7 +71,7 @@ class SignupForm extends Component {
           error={errors.email}
           label="Email"
           onChange={this.onChange}
-          value={this.state.user_params.email}
+          value={user_params.email}
           field="email"
         />
 
@@ -79,7 +79,7 @@ class SignupForm extends Component {
           error={errors.password}
           label="Password"
           onChange={this.onChange}
-          value={this.state.user_params.password}
+          value={user_params.password}
           field="password"
           type="password"
         />
@@ -88,7 +88,7 @@ class SignupForm extends Component {
           error={errors.password_confirmation}
           label="Password Comfirmation"
           onChange={this.onChange}
-          value={this.state.user_params.password_confirmation}
+          value={user_params.password_confirmation}
           field="password_confirmation"
           type="password"
         />
@@ -96,7 +96,7 @@ class SignupForm extends Component {
         <div className={classnames("form-group", { 'has-error': errors.time_zone })}>
           <label className="control-label">Timezone</label>
           <select
-            value={this.state.user_params.time_zone}
+            value={user_params.time_zone}
             onChange={this.onChange}
             type="text"
             name="time_zone"

@@ -45,13 +45,13 @@ class LoginForm extends Component {
   }
 
   onChange(event) {
-    let updated_params = this.state.login_params
-    updated_params[event.target.name] = event.target.value
-    this.setState({ login_params: updated_params })
+    let updated_params = this.state.login_params;
+    updated_params[event.target.name] = event.target.value;
+    this.setState({ login_params: updated_params });
   }
 
   render() {
-    const { errors, isLoading } = this.state;
+    const { login_params, errors, isLoading } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
 
@@ -69,7 +69,7 @@ class LoginForm extends Component {
         <TextFieldGroup
           field="password"
           label="Password"
-          value={this.state.login_params.password}
+          value={login_params.password}
           error={errors.password}
           onChange={this.onChange}
           type="password"

@@ -35,7 +35,7 @@ class NavigationBar extends Component {
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link to="/" className="navbar-brand" href="#">Red Dice</Link>
+            <Link to="/" className="navbar-brand" href="#">Home</Link>
           </div>
 
           <div className="collapse navbar-collapse">

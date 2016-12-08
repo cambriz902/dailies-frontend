@@ -34,6 +34,7 @@ class DailyCategoryForm extends Component {
             type: 'success',
             text: 'Created Daily Category Successfully!'
           });
+          this.context.router.push('/');
         })
         .catch((data) => {
           this.setState({ isLoading: false });
@@ -66,7 +67,7 @@ class DailyCategoryForm extends Component {
           error={errors.kind}
         />
 
-        <button type="submit" className="btn btn-primary">Create</button>
+        <button type="submit" className="btn btn-primary" disabled={isLoading}>Create</button>
       </form>
     );
   }

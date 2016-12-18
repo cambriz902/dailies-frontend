@@ -21,7 +21,7 @@ class LoginForm extends Component {
   }
 
   isValid() {
-    const { errors, isValid } = validateInput(this.state);
+    const { errors, isValid } = validateInput(this.state.login_params);
 
     if(!isValid) {
       this.setState({ errors });

@@ -102,7 +102,7 @@ class SignupForm extends Component {
             name="time_zone"
             className="form-control"
           >
-            <option value="" disabled>Choose Your Timezone </option>
+            <option value="" disabled>Choose Your Timezone</option>
             {options}
           </select>
           {errors.time_zone && <span className="help-block">{errors.time_zone}</span>}

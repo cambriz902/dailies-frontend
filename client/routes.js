@@ -6,6 +6,7 @@ import Greetings from './components/Greetings';
 import SignupPage from './components/signup/SignupPage'
 import LoginPage from './components/login/LoginPage';
 import NewDailyCategoryPage from './components/categories/NewDailyCategoryPage';
+import NewDailyPage from './components/dailies/NewDailyPage';
 
 import requireAuth from './utils/requireAuth';
 export default (
@@ -14,5 +15,6 @@ export default (
     <Route path="signup" component={SignupPage} />
     <Route path="login" component={LoginPage} />
     <Route path="new-daily-category-page" component={requireAuth(NewDailyCategoryPage)} />
+    <Route path="new-daily-page" component={requireAuth(NewDailyPage)} />
   </Route>
 )

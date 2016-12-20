@@ -26,8 +26,8 @@ class DailyCategoryForm extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.setState({ errors: {}, isLoading: true });
     if(this.isValid()) {
+      this.setState({ errors: {}, isLoading: true });
       this.props.createDailyCategory(this.state.daily_category_params)
         .then((response) => {
           this.props.addFlashMessage({
@@ -36,9 +36,9 @@ class DailyCategoryForm extends Component {
           });
           this.context.router.push('/');
         })
-        .catch((data) => {
+        .catch(() => {
           this.setState({ isLoading: false });
-        })
+        });
     }
   }
 
@@ -60,7 +60,7 @@ class DailyCategoryForm extends Component {
         <h1>Create New Daily Category</h1>
 
         <TextFieldGroup
-          label="Type"
+          label="Kind"
           field="kind"
           value={daily_category_params.kind}
           onChange={this.onChange}

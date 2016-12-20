@@ -7,11 +7,13 @@ import { addFlashMessage } from '../../actions/flashMessages';
 
 class NewDailyPage extends Component {
   render() {
+    const { createDaily, addFlashMessage, dailyCategories } = this.props;
     return (
       <div>
         <DailyForm 
           createDaily={createDaily}
           addFlashMessage={addFlashMessage}
+          dailyCategories={dailyCategories}
         />
       </div>
     );
@@ -20,7 +22,14 @@ class NewDailyPage extends Component {
 
 NewDailyPage.propTypes = {
   createDaily: React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired
+  addFlashMessage: React.PropTypes.func.isRequired,
+  dailyCategories: React.PropTypes.array.isRequired
 }
 
-export default connect(null, { createDaily, addFlashMessage })(NewDailyPage);
+function mapStateToProps(state) {
+  return {
+    dailyCategories: state.dailyCategories
+  }
+}
+
+export default connect(mapStateToProps, { createDaily, addFlashMessage })(NewDailyPage);

@@ -56,9 +56,27 @@ class DailyForm extends Component {
 
   render() {
     const { daily_params, errors, isLoading } = this.state;
+    const options = this.props.dailyCategories.map(category => 
+      <option key={category.id} value={category.id}>{category.kind}</option>
+    );
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Create New Daily</h1>
+
+        <div className={classnames("form-group", { 'has-error': errors.daily_category_id })}>
+          <label className="control-lable">Daily Category</label>
+          <select
+            value={daily_params.daily_category_id}
+            onChange={this.onChange}
+            type="text"
+            name="daily_category_id"
+            className="form-control"
+          >
+            <option value="" disabled>Choose Daily Category</option>
+            {options}
+          </select>
+        </div>
+
         <TextFieldGroup
           label="Title"
           field="title"
@@ -75,18 +93,6 @@ class DailyForm extends Component {
           errors={errors.description}
           />
 
-        <div className={classnames("form-group", { 'has-error': errors.daily_category_id })}>
-          <label className="control-lable">Daily Category</label>
-          <select
-            value={daily_params.daily_category_id}
-            onChange={this.onChange}
-            type="text"
-            name="daily_category_id"
-            className="form-control"
-          >
-            <option value="" disabled>Choose Daily Category</option>
-          </select>
-        </div>
         <button type="submit" className="btn btn-primary" disabled={isLoading}>Create</button>
       </form>
     );
@@ -95,7 +101,8 @@ class DailyForm extends Component {
 
 DailyForm.propTypes = {
   createDaily: React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired
+  addFlashMessage: React.PropTypes.func.isRequired,
+  dailyCategories: React.PropTypes.array.isRequired
 }
 
 DailyForm.contextTypes = {

@@ -61,7 +61,7 @@ class DailyForm extends Component {
     );
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Create New Daily</h1>
+        <h1>Create Daily</h1>
 
         <div className={classnames("form-group", { 'has-error': errors.daily_category_id })}>
           <label className="control-lable">Daily Category</label>

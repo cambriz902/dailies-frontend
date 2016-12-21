@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import validateInput from './validations';
 import TextFieldGroup from '../common/TextFieldGroup';
 
-
 class DailyCategoryForm extends Component {
   constructor(props) {
     super(props)
@@ -30,6 +29,7 @@ class DailyCategoryForm extends Component {
       this.setState({ errors: {}, isLoading: true });
       this.props.createDailyCategory(this.state.daily_category_params)
         .then((response) => {
+          this.props.addDailyCategories([response.data.daily_category]);
           this.props.addFlashMessage({
             type: 'success',
             text: 'Created Daily Category Successfully!'
@@ -57,7 +57,7 @@ class DailyCategoryForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Create New Daily Category</h1>
+        <h1>Create Daily Category</h1>
 
         <TextFieldGroup
           label="Kind"
@@ -75,7 +75,8 @@ class DailyCategoryForm extends Component {
 
 DailyCategoryForm.propTypes = {
   createDailyCategory: React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired
+  addFlashMessage: React.PropTypes.func.isRequired,
+  addDailyCategories: React.PropTypes.func.isRequired
 }
 
 DailyCategoryForm.contextTypes = {

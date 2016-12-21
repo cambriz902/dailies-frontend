@@ -18,31 +18,37 @@ class NavigationBar extends Component {
     const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
-      <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/new-daily-category-page">Create Category</Link></li>
-        <li><Link to="/new-daily-page">Create Daily</Link></li>
-        <li><a href="#" onClick={this.logout}>Logout</a></li>
-      </ul>
+      <div className="container-fluid">
+        <div className="navbar-header">
+          <Link to="/home" className="navbar-brand" href="#">Home</Link>
+        </div>
+        <div className="collapse navbar-collapse">
+          <ul className="nav navbar-nav navbar-right">
+            <li><Link to="/new-daily-category-page">Create Category</Link></li>
+            <li><Link to="/new-daily-page">Create Daily</Link></li>
+            <li><a href="#" onClick={this.logout}>Logout</a></li>
+          </ul>
+        </div>
+      </div>
     );
 
     const guestLinks = (
-      <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/signup">Sign up</Link></li>
-        <li><Link to="/login">Login</Link></li>
-      </ul>
+      <div className="container-fluid">
+        <div className="navbar-header">
+          <Link to="/#" className="navbar-brand" href="#">Home</Link>
+        </div>
+        <div className="collapse navbar-collapse">
+          <ul className="nav navbar-nav navbar-right">
+            <li><Link to="/signup">Sign up</Link></li>
+            <li><Link to="/login">Login</Link></li>
+          </ul>
+        </div>
+      </div>
     );
 
     return (
       <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <Link to="/" className="navbar-brand" href="#">Home</Link>
-          </div>
-
-          <div className="collapse navbar-collapse">
-            { isAuthenticated ? userLinks : guestLinks }
-          </div>
-        </div>
+        { isAuthenticated ? userLinks : guestLinks }
       </nav>
     );
   }

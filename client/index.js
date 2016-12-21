@@ -12,6 +12,7 @@ import routes from './routes';
 import { setCurrentUser } from './actions/authActions';
 import { userAccountRequest } from './actions/userActions';
 import { addDailyCategories } from './actions/dailyCategoryActions';
+import { addDailies } from './actions/dailyActions';
 
 const store = createStore(
   rootReducer,
@@ -25,17 +26,20 @@ if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
   store.dispatch(userAccountRequest())
     .then((response) => {
-      let daily_categories_data = response.data.user.daily_categories;
-      let dailies_data = response.data.user.dailies;
-      delete(response.data.user['daily_categories']);
-      let user_data = response.data.user;
-      store.dispatch(addDailyCategories(daily_categories_data));
-      store.dispatch(setCurrentUser(user_data));
+      initializeStoreData(response.data);
     })
     .catch(err => {
       delete axios.defaults.headers.common['Authorization'];
       localStorage.removeItem('jwtToken');
     });
+}
+
+function initializeStoreData(data) {
+  store.dispatch(addDailyCategories(data.user.daily_categories));
+  store.dispatch(addDailies(data.user.dailies));
+  delete(data.user['daily_categories']);
+  delete(data.user['dailies']);
+  store.dispatch(setCurrentUser(data.user));
 }
 
 render(

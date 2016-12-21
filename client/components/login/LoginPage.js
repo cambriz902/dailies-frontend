@@ -22,4 +22,4 @@ LoginPage.propTypes = {
   login: React.PropTypes.func.isRequired
 }
 
-export default connect(null, { login})(LoginPage);
+export default connect(null, { login })(LoginPage);

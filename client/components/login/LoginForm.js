@@ -37,7 +37,7 @@ class LoginForm extends Component {
           this.context.router.push('/');
         })
         .catch((error) => {
-          this.setState({ errors: { form: error.response.data.errors }, isLoading: false })
+          this.setState({ isLoading: false })
         });
     }
   }

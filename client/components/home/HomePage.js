@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import Greetings from './Greetings';
-import ActiveCategories from './ActiveCategories';
+import ActiveCategoryList from './ActiveCategoryList';
 import { connect } from 'react-redux';
 
 class HomePage extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
-    const { dailyCategories } = this.props;
+    const { dailyCategories, dailies } = this.props;
 
     const userContent =  (
-      <ActiveCategories 
-        dailyCategories={dailyCategories} 
+      <ActiveCategoryList
+        dailyCategories={dailyCategories}
+        dailies={dailies}
       />
     );
 
@@ -33,7 +34,8 @@ HomePage.propTypes = {
 function mapStateToProps(state){
   return {
     auth: state.auth,
-    dailyCategories: state.dailyCategories
+    dailyCategories: state.dailyCategories,
+    dailies: state.dailies
   };
 }
 

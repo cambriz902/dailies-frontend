@@ -36,7 +36,11 @@ class DailyAccordion extends Component {
 
     return (
       <div>
-        <a onClick={this.toggle}>Title: {daily.title}</a>
+        <button 
+          className="btn btn-info btn-lg btn-block" 
+          onClick={this.toggle}>
+            Title: {daily.title}
+        </button>
         <div style={stateStyle}>
           <p>Description: {daily.description}</p>
           <button id={daily.id} onClick={this.processDaily}>Complete</button>

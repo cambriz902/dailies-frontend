@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CategoryAccordion from './CategoryAccordion';
 
-
 class ActiveCategoryList extends Component {
   
   categoryDailies(dailyCategory, dailies) {
@@ -23,7 +22,6 @@ class ActiveCategoryList extends Component {
     
     return(
       <div>
-        <h1>Categories</h1>
         { categories }
       </div>
     );

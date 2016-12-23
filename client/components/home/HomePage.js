@@ -9,10 +9,15 @@ class HomePage extends Component {
     const { dailyCategories, dailies } = this.props;
 
     const userContent =  (
-      <ActiveCategoryList
-        dailyCategories={dailyCategories}
-        dailies={dailies}
-      />
+      <div className="row">
+        <div className="col-md-4 col-md-offset-4">
+          <h3>Complete A Daily</h3>
+          <ActiveCategoryList
+            dailyCategories={dailyCategories}
+            dailies={dailies}
+          />
+        </div>
+      </div>
     );
 
     const guestContent = ( 

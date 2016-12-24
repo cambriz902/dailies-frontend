@@ -15,3 +15,9 @@ export function createDaily(daily) {
     return axios.post(`${API_URL}/api/dailies`, { daily: daily });
   }
 }
+
+export function completeDaily(dailyId) {
+  return dispatch => {
+    return axios.put(`${API_URL}/api/dailies/${dailyId}/complete`);
+  }
+}

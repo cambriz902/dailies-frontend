@@ -27,17 +27,19 @@ class CategoryAccordion extends Component {
   }
 
   render() {
-    const { category, details, categoryDailies } = this.props;
+    const { category, categoryDailies, completeDaily, incrementDailyCategoryTotalPoints } = this.props;
     const stateStyle = this.state.active ? styles.active : styles.inactive;
     const dailies = categoryDailies.map(daily =>
       <DailyAccordion
         key={daily.id}
         daily={daily}
+        completeDaily={completeDaily}
+        incrementDailyCategoryTotalPoints={incrementDailyCategoryTotalPoints}
       />
     );
     return (
       <div>
-        <button 
+        <button
           className="btn btn-primary btn-lg btn-block" 
           onClick={this.toggle}>
             Kind: {category.kind} Points: {category.total_points}
@@ -45,7 +47,6 @@ class CategoryAccordion extends Component {
         <div style={stateStyle}>
           {dailies}
         </div>
-
       </div>
     )
   }
@@ -53,8 +54,9 @@ class CategoryAccordion extends Component {
 
 CategoryAccordion.propTypes = {
   category: React.PropTypes.object.isRequired,
-  details: React.PropTypes.string.isRequired,
-  categoryDailies: React.PropTypes.array.isRequired
+  categoryDailies: React.PropTypes.array.isRequired,
+  completeDaily: React.PropTypes.func.isRequired,
+  incrementDailyCategoryTotalPoints: React.PropTypes.func.isRequired
 }
 
 export default CategoryAccordion;

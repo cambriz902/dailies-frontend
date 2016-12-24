@@ -16,12 +16,14 @@ class DailyAccordion extends Component {
       active: false
     };
 
-    this.toggle = this.toggle.bind(this);
-    this.processDaily = this.processDaily.bind(this);    
+    this.toggle = this.toggle.bind(this);   
   }
 
-  processDaily(event){
-    console.log(event.target.id)
+  processDaily(daily){
+    this.props.completeDaily(daily.id)
+      .then(response => {
+        this.props.incrementDailyCategoryTotalPoints(daily.daily_category_id);
+      });
   }
 
   toggle() {
@@ -36,14 +38,14 @@ class DailyAccordion extends Component {
 
     return (
       <div>
-        <button 
+        <button
           className="btn btn-info btn-lg btn-block" 
           onClick={this.toggle}>
             Title: {daily.title}
         </button>
         <div style={stateStyle}>
           <p>Description: {daily.description}</p>
-          <button id={daily.id} onClick={this.processDaily}>Complete</button>
+          <button onClick={this.processDaily.bind(this, daily)}>Complete</button>
         </div>
       </div>
     )
@@ -52,7 +54,8 @@ class DailyAccordion extends Component {
 
 DailyAccordion.propTypes = {
   daily: React.PropTypes.object.isRequired,
-  completeDaily: React.PropTypes.func
+  completeDaily: React.PropTypes.func.isRequired,
+  incrementDailyCategoryTotalPoints: React.PropTypes.func.isRequired
 }
 
 export default DailyAccordion;

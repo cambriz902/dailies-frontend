@@ -39,7 +39,7 @@ class NavigationBar extends Component {
             <Link to="/" className="navbar-brand" href="#">Home</Link>
           </div>
 
-          <div className="collapse navbar-collapse">
+          <div >
             { isAuthenticated ? userLinks : guestLinks }
           </div>
         </div>

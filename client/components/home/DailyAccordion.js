@@ -23,6 +23,7 @@ class DailyAccordion extends Component {
     this.props.completeDaily(daily.id)
       .then(response => {
         this.props.incrementDailyCategoryTotalPoints(daily.daily_category_id);
+        this.props.removeDaily(daily.id);
       });
   }
 
@@ -55,6 +56,7 @@ class DailyAccordion extends Component {
 DailyAccordion.propTypes = {
   daily: React.PropTypes.object.isRequired,
   completeDaily: React.PropTypes.func.isRequired,
+  removeDaily: React.PropTypes.func.isRequired,
   incrementDailyCategoryTotalPoints: React.PropTypes.func.isRequired
 }
 

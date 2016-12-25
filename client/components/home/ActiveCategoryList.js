@@ -10,7 +10,13 @@ class ActiveCategoryList extends Component {
   }
 
   render () {
-    const { dailyCategories, dailies, completeDaily, incrementDailyCategoryTotalPoints } = this.props;
+    const { 
+      dailyCategories, 
+      dailies, 
+      completeDaily, 
+      incrementDailyCategoryTotalPoints, 
+      removeDaily 
+    } = this.props;
     const categories = dailyCategories.map(dailyCategory =>
       <CategoryAccordion 
         key={dailyCategory.id} 
@@ -18,9 +24,10 @@ class ActiveCategoryList extends Component {
         categoryDailies={this.categoryDailies(dailyCategory, dailies)}
         completeDaily={completeDaily}
         incrementDailyCategoryTotalPoints={incrementDailyCategoryTotalPoints}
+        removeDaily={removeDaily}
         />
     );
-    
+
     return(
       <div>
         { categories }
@@ -33,6 +40,7 @@ ActiveCategoryList.propTypes = {
   dailyCategories: React.PropTypes.array.isRequired,
   dailies: React.PropTypes.array.isRequired,
   completeDaily: React.PropTypes.func.isRequired,
+  removeDaily: React.PropTypes.func.isRequired,
   incrementDailyCategoryTotalPoints: React.PropTypes.func.isRequired
 }
 

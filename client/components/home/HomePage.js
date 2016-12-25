@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import Greetings from './Greetings';
 import ActiveCategoryList from './ActiveCategoryList';
 import { connect } from 'react-redux';
-import { completeDaily } from '../../actions/dailyActions';
+import { completeDaily, removeDaily } from '../../actions/dailyActions';
 import { incrementDailyCategoryTotalPoints } from '../../actions/dailyCategoryActions';
 
 class HomePage extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
-    const { dailyCategories, dailies, completeDaily, incrementDailyCategoryTotalPoints } = this.props;
+    const { 
+      dailyCategories, 
+      dailies, 
+      completeDaily, 
+      incrementDailyCategoryTotalPoints,
+      removeDaily 
+    } = this.props;
     
     const userContent =  (
       <div className="row">
@@ -18,6 +24,7 @@ class HomePage extends Component {
             dailyCategories={dailyCategories}
             dailies={dailies}
             completeDaily={completeDaily}
+            removeDaily={removeDaily}
             incrementDailyCategoryTotalPoints={incrementDailyCategoryTotalPoints}
           />
         </div>
@@ -41,7 +48,8 @@ HomePage.propTypes = {
   dailyCategories: React.PropTypes.array.isRequired,
   dailies: React.PropTypes.array.isRequired,
   completeDaily: React.PropTypes.func.isRequired,
-  incrementDailyCategoryTotalPoints: React.PropTypes.func.isRequired
+  removeDaily: React.PropTypes.func.isRequired,
+  incrementDailyCategoryTotalPoints: React.PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state){
@@ -52,4 +60,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, { completeDaily, incrementDailyCategoryTotalPoints })(HomePage);
+export default connect(mapStateToProps, { completeDaily, incrementDailyCategoryTotalPoints, removeDaily })(HomePage);

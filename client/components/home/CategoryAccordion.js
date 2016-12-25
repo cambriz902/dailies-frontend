@@ -27,7 +27,14 @@ class CategoryAccordion extends Component {
   }
 
   render() {
-    const { category, categoryDailies, completeDaily, incrementDailyCategoryTotalPoints } = this.props;
+    const { 
+      category, 
+      categoryDailies, 
+      completeDaily, 
+      incrementDailyCategoryTotalPoints, 
+      removeDaily 
+    } = this.props;
+    
     const stateStyle = this.state.active ? styles.active : styles.inactive;
     const dailies = categoryDailies.map(daily =>
       <DailyAccordion
@@ -35,6 +42,7 @@ class CategoryAccordion extends Component {
         daily={daily}
         completeDaily={completeDaily}
         incrementDailyCategoryTotalPoints={incrementDailyCategoryTotalPoints}
+        removeDaily={removeDaily}
       />
     );
     return (
@@ -56,6 +64,7 @@ CategoryAccordion.propTypes = {
   category: React.PropTypes.object.isRequired,
   categoryDailies: React.PropTypes.array.isRequired,
   completeDaily: React.PropTypes.func.isRequired,
+  removeDaily: React.PropTypes.func.isRequired,
   incrementDailyCategoryTotalPoints: React.PropTypes.func.isRequired
 }
 

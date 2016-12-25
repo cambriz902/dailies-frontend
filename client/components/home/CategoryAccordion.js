@@ -42,7 +42,7 @@ class CategoryAccordion extends Component {
         <button
           className="btn btn-primary btn-lg btn-block" 
           onClick={this.toggle}>
-            Kind: {category.kind} Points: {category.total_points}
+            {category.kind} - {category.total_points}
         </button>
         <div style={stateStyle}>
           {dailies}

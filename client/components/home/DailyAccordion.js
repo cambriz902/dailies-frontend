@@ -41,7 +41,7 @@ class DailyAccordion extends Component {
         <button
           className="btn btn-info btn-lg btn-block" 
           onClick={this.toggle}>
-            Title: {daily.title}
+            {daily.title}
         </button>
         <div style={stateStyle}>
           <p>Description: {daily.description}</p>

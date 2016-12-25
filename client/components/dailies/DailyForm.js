@@ -32,6 +32,7 @@ class DailyForm extends Component {
       this.setState({ errros: {}, isLoading: true });
       this.props.createDaily(this.state.daily_params)
         .then((response) => {
+          this.props.addDailies([response.data.daily]);
           this.props.addFlashMessage({
             type: 'success',
             text: 'Create Daily Successfully!'
@@ -102,7 +103,8 @@ class DailyForm extends Component {
 DailyForm.propTypes = {
   createDaily: React.PropTypes.func.isRequired,
   addFlashMessage: React.PropTypes.func.isRequired,
-  dailyCategories: React.PropTypes.array.isRequired
+  dailyCategories: React.PropTypes.array.isRequired,
+  addDailies: React.PropTypes.func.isRequired
 }
 
 DailyForm.contextTypes = {

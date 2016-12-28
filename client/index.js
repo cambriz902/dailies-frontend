@@ -36,7 +36,7 @@ if (localStorage.jwtToken) {
 
 function initializeStoreData(data) {
   store.dispatch(addDailyCategories(data.user.daily_categories));
-  store.dispatch(addDailies(data.user.dailies));
+  store.dispatch(addDailies(data.user.today_dailies));
   delete(data.user['daily_categories']);
   delete(data.user['dailies']);
   store.dispatch(setCurrentUser(data.user));

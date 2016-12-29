@@ -22,4 +22,7 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, './index.html'));
 });
 
-app.listen(4000, () => console.log('Running on localhost:4000'));
+var port = process.env.PORT || 4000;
+console.log(process.env)
+
+app.listen(port, () => console.log('Running on localhost:4000'));

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';
+import { setDailyCategories } from '../actions/dailyCategoryActions';
+import { setDailies } from '../actions/dailyActions';
 
 class NavigationBar extends Component {
   constructor(props) {
@@ -12,6 +14,8 @@ class NavigationBar extends Component {
   logout(event) {
     event.preventDefault();
     this.props.logout();
+    this.props.setDailyCategories([]);
+    this.props.setDailies([]);
   }
 
   render () {
@@ -50,7 +54,9 @@ class NavigationBar extends Component {
 
 NavigationBar.propTypes = {
   auth: React.PropTypes.object.isRequired,
-  logout: React.PropTypes.func.isRequired
+  logout: React.PropTypes.func.isRequired,
+  setDailyCategories: React.PropTypes.func.isRequired,
+  setDailies: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
@@ -59,4 +65,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logout })(NavigationBar);
+export default connect(mapStateToProps, { logout, setDailyCategories, setDailies })(NavigationBar);

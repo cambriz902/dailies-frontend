@@ -11,8 +11,8 @@ import routes from './routes';
 
 import { setCurrentUser } from './actions/authActions';
 import { userAccountRequest } from './actions/userActions';
-import { addDailyCategories } from './actions/dailyCategoryActions';
-import { addDailies } from './actions/dailyActions';
+import { setDailyCategories } from './actions/dailyCategoryActions';
+import { setDailies } from './actions/dailyActions';
 
 const store = createStore(
   rootReducer,
@@ -35,11 +35,9 @@ if (localStorage.jwtToken) {
 }
 
 function initializeStoreData(data) {
-  store.dispatch(addDailyCategories(data.user.daily_categories));
-  store.dispatch(addDailies(data.user.today_dailies));
-  delete(data.user['daily_categories']);
-  delete(data.user['dailies']);
-  store.dispatch(setCurrentUser(data.user));
+  store.dispatch(setCurrentUser({email: data.user.email }));
+  store.dispatch(setDailyCategories(data.user.daily_categories));
+  store.dispatch(setDailies(data.user.today_dailies));
 }
 
 render(

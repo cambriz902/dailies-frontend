@@ -1,4 +1,4 @@
-import { ADD_DAILIES, REMOVE_DAILY } from '../actions/types';
+import { ADD_DAILIES, REMOVE_DAILY, SET_DAILIES } from '../actions/types';
 import _ from 'lodash';
 
 const initialState = [];
@@ -11,6 +11,8 @@ export default (state = initialState, action = {}) => {
       return state.filter(daily => {
         return daily.id != action.daily_id
       });
+    case SET_DAILIES:
+      return action.dailies;
     default: return state;
   }
 }

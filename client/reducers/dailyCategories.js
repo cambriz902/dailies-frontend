@@ -1,5 +1,6 @@
 import { ADD_DAILY_CATEGORIES } from '../actions/types';
 import { INCREMENT_TOTAL_POINTS } from '../actions/types';
+import { SET_DAILY_CATEGORIES } from '../actions/types';
 
 const initialState = [];
 
@@ -19,6 +20,8 @@ export default (state = initialState, action = {}) => {
           return category;
         }
       });
+    case SET_DAILY_CATEGORIES:
+      return action.daily_categories;
     default: return state;
   }
 }

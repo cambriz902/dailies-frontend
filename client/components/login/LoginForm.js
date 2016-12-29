@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 import validateInput from './Validations';
 
+import setAuthorizationToken from '../../utils/setAuthorizationToken'
+
 class LoginForm extends Component {
   constructor(props) {
     super(props)
@@ -34,6 +36,7 @@ class LoginForm extends Component {
       this.setState({ errors: {}, isLoading: true});
       this.props.login(this.state.login_params)
         .then((response) => {
+          this.initializeStoreData(response.data);
           this.context.router.push('/');
         })
         .catch((error) => {
@@ -46,6 +49,15 @@ class LoginForm extends Component {
     let updated_params = this.state.login_params;
     updated_params[event.target.name] = event.target.value;
     this.setState({ login_params: updated_params });
+  }
+
+  initializeStoreData(data) {
+    const token = data.login_user.auth_token;
+    localStorage.setItem('jwtToken', token);
+    setAuthorizationToken(token);
+    this.props.setCurrentUser({email: data.login_user.email });
+    this.props.addDailyCategories(data.login_user.daily_categories);
+    this.props.addDailies(data.login_user.today_dailies);
   }
 
   render() {
@@ -82,7 +94,10 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  login: React.PropTypes.func.isRequired
+  login: React.PropTypes.func.isRequired,
+  setCurrentUser: React.PropTypes.func.isRequired,
+  addDailyCategories: React.PropTypes.func.isRequired,
+  addDailies: React.PropTypes.func.isRequired
 }
 
 LoginForm.contextTypes = {

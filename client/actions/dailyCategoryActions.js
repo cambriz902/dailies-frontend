@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_DAILY_CATEGORIES } from './types';
+import { ADD_DAILY_CATEGORIES, SET_DAILY_CATEGORIES } from './types';
 import { INCREMENT_TOTAL_POINTS } from './types';
 
 const API_URL = 'http://localhost:3000';
@@ -9,6 +9,13 @@ export function addDailyCategories(daily_categories) {
     type: ADD_DAILY_CATEGORIES,
     daily_categories
   };
+}
+
+export function setDailyCategories(daily_categories) {
+  return {
+    type: SET_DAILY_CATEGORIES,
+    daily_categories
+  }
 }
 
 export function incrementDailyCategoryTotalPoints(daily_category_id) {

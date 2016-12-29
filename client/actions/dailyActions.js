@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_DAILIES, REMOVE_DAILY } from './types';
+import { ADD_DAILIES, REMOVE_DAILY, SET_DAILIES } from './types';
 
 const API_URL = 'http://localhost:3000';
 
@@ -8,6 +8,13 @@ export function addDailies(dailies) {
     type: ADD_DAILIES,
     dailies
   };
+}
+
+export function setDailies(dailies) {
+  return {
+    type: SET_DAILIES,
+    dailies
+  }
 }
 
 export function removeDaily(daily_id) {

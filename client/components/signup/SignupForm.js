@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classnames from 'classnames';
-import validateInput from './validations';
+import validateInput from './Validations';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class SignupForm extends Component {

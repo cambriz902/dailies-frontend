@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import validateInput from './validations';
+import validateInput from './Validations';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class DailyCategoryForm extends Component {

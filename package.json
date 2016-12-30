@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config ./webpack.config.prod.js --process --colors",
-    "start": "node ./client/components/App.js",
+    "heroku-postbuild": "webpack --config ./webpack.config.prod.js --process --colors",
+    "start": "node ./server/index.js",
     "server": "nodemon --watch server --exec babel-node -- server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

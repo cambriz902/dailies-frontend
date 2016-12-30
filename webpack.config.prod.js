@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 
-export default {
+module.export = {
   devtool: 'sourc-map',
   entry: [
     './client/index.js'

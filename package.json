@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "webpack --config ./webpack.config.prod.js --process --colors",
-    "start": "node ./components/App.js",
+    "build": "webpack --config ./webpack.config.prod.js --process --colors",
+    "start": "node ./client/components/App.js",
     "server": "nodemon --watch server --exec babel-node -- server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "nodemon": "^1.11.0",
     "react-hot-loader": "^3.0.0-beta.6",
+    "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.2"
   },
@@ -36,7 +37,6 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "shortid": "^2.2.6",
-    "validator": "^6.1.0",
-    "webpack": "^1.13.3"
+    "validator": "^6.1.0"
   }
 }

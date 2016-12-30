@@ -7,9 +7,9 @@ module.export = {
     './client/index.js'
   ],
   output: {
-    path: '/',
+    path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/public/'
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),

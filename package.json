@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    
     "nodemon": "^1.11.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "webpack-dev-middleware": "^1.8.4",

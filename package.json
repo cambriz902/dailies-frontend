@@ -2,7 +2,7 @@
   "name": "dailies-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./server/index.js",
   "scripts": {
     "heroku-postbuild": "webpack --config ./webpack.config.prod.js --process --colors",
     "start": "node ./server/index.js",

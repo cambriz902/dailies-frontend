@@ -1,5 +1,5 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'sourc-map',
@@ -53,4 +53,4 @@ module.exports = {
   resolve: {
     extensions: [ '', '.js']
   }
-}
+};

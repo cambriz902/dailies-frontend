@@ -12,10 +12,10 @@ if (process.env.NODE_ENV !==  'production') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpackConfig = require('../webpack.config.dev');
-  const compiler = webpack(webpackConfig)
+  const webpackConfig = require('../webpack.config.dev.js');
+  const compiler = webpack(webpackConfig);
 
-  app.use(webpackHotMiddleware(compiler))
+  app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
     hot: true,
     publicPath: webpackConfig.output.publicPath,

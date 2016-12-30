@@ -8,8 +8,9 @@ export default {
     path.join(__dirname, '/client/index.js')
   ],
   output: {
-    path: '/',
-    publicPath: '/'
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js',
+    publicPath: '/public/'
   },
   plugins: [
     new webpack.NoErrorsPlugin(),

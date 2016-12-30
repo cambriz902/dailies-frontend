@@ -3,11 +3,10 @@ const path = require('path');
 
 const app = express();
 const indexPath = path.join(__dirname, './index.html');
-const publicPath = express.static(path.join(__dirname, '../public'))
+const publicPath = express.static(path.join(__dirname, '../public'));
 
 app.use('/public', publicPath);
-app.get('/', function (_, res) { res.sendFile(indexPath) })
-const port = (process.env.PORT || 4000)
+const port = (process.env.PORT || 4000);
 
 if (process.env.NODE_ENV !==  'production') {
   const webpack = require('webpack');
@@ -23,5 +22,7 @@ if (process.env.NODE_ENV !==  'production') {
     noInfo: true
   }));
 }
+
+app.get('*', (req, res) => { res.sendFile(indexPath) });
 
 app.listen(port, () => console.log(`Running on localhost:${port}`));

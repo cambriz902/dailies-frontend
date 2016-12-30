@@ -29,7 +29,7 @@ module.exports = {
     loaders: [
       { 
         test: /\.js?$/,
-        loader: 'babel',
+        loader: ['babel', 'babel-loader'],
         exclude: /node_modules/ 
       },
       {
@@ -46,5 +46,8 @@ module.exports = {
         loader: 'file'
       }
     ] 
+  },
+  resolve: {
+    extensions: [ '', '.js']
   }
 }

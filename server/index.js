@@ -4,9 +4,9 @@ const path = require('path');
 const app = express();
 const indexPath = path.join(__dirname, './index.html');
 const publicPath = express.static(path.join(__dirname, '../public'));
+const port = (process.env.PORT || 4000);
 
 app.use('/public', publicPath);
-const port = (process.env.PORT || 4000);
 
 if (process.env.NODE_ENV !==  'production') {
   const webpack = require('webpack');

@@ -22,7 +22,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production'),
-        'API_URL': JSON.stringify('https://mydailies.herokuapp.com')
+        'API_URL': JSON.stringify('https://dailies-api.herokuapp.com')
       }
     })
   ],

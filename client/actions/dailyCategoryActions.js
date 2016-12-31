@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ADD_DAILY_CATEGORIES, SET_DAILY_CATEGORIES } from './types';
 import { INCREMENT_TOTAL_POINTS } from './types';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = process.env.API_URL;
 
 export function addDailyCategories(daily_categories) {
   return {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ADD_DAILIES, REMOVE_DAILY, SET_DAILIES } from './types';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = process.env.API_URL;
 
 export function addDailies(dailies) {
   return {

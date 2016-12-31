@@ -27,10 +27,13 @@ class ActiveCategoryList extends Component {
         removeDaily={removeDaily}
         />
     );
+    const noCategories = (
+      <p>You have no Categories at the moment. Go create one!</p>
+    );
 
     return(
       <div>
-        { categories }
+        { categories.length == 0 ? noCategories : categories }
       </div>
     );
   }

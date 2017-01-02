@@ -23,8 +23,8 @@ class NavigationBar extends Component {
 
     const userLinks = (
       <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/new-daily-category-page">Create Category</Link></li>
-        <li><Link to="/new-daily-page">Create Daily</Link></li>
+        <li><Link to="/new-daily-category-page">Categories</Link></li>
+        <li><Link to="/new-daily-page">Dailies</Link></li>
         <li><a href="#" onClick={this.logout}>Logout</a></li>
       </ul>
     );

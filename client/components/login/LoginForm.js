@@ -40,7 +40,13 @@ class LoginForm extends Component {
           this.context.router.push('/');
         })
         .catch((error) => {
-          this.setState({ isLoading: false })
+          this.setState({ 
+            isLoading: false, 
+            errors: { 
+              email: error.response.data.errors,
+              password : error.response.data.errors 
+            } 
+          });
         });
     }
   }
@@ -62,6 +68,7 @@ class LoginForm extends Component {
 
   render() {
     const { login_params, errors, isLoading } = this.state;
+
     return (
       <form onSubmit={this.onSubmit}>
 

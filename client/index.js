@@ -29,9 +29,12 @@ if (localStorage.jwtToken) {
       initializeStoreData(response.data);
     })
     .catch(err => {
+      store.dispatch(setCurrentUser({}));
       delete axios.defaults.headers.common['Authorization'];
       localStorage.removeItem('jwtToken');
     });
+} else {
+  store.dispatch(setCurrentUser({}));
 }
 
 function initializeStoreData(data) {

@@ -33,12 +33,13 @@ class HomePage extends Component {
           />
         </div>
       </div>
-    );
+    ); 
+
     const guestContent = ( 
       <Greetings /> 
     );
 
-    const content = isAuthenticated ? userContent : guestContent;
+    const content = isAuthenticated ? userContent : guestContent
 
     return (
       <div>

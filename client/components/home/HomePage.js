@@ -6,6 +6,10 @@ import { completeDaily, removeDaily } from '../../actions/dailyActions';
 import { incrementDailyCategoryTotalPoints } from '../../actions/dailyCategoryActions';
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props)
+    let isAuthenticated = this.props.auth.isAuthenticated;
+  }
   render() {
     const { isAuthenticated } = this.props.auth;
     const { 
@@ -30,14 +34,15 @@ class HomePage extends Component {
         </div>
       </div>
     );
-
     const guestContent = ( 
       <Greetings /> 
     );
 
+    const content = isAuthenticated ? userContent : guestContent;
+
     return (
       <div>
-        { isAuthenticated ? userContent : guestContent }
+        { isAuthenticated != null && content }
       </div>
     );
   }

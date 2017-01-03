@@ -36,6 +36,8 @@ class NavigationBar extends Component {
       </ul>
     );
 
+    const links = isAuthenticated ? userLinks : guestLinks
+
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -44,7 +46,7 @@ class NavigationBar extends Component {
           </div>
 
           <div >
-            { isAuthenticated ? userLinks : guestLinks }
+            { isAuthenticated != null && links }
           </div>
         </div>
       </nav>

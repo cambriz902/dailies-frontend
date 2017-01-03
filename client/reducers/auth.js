@@ -2,7 +2,7 @@ import { SET_CURRENT_USER } from '../actions/types';
 import isEmpty from 'lodash/isEmpty';
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: null,
   user: {}
 };
 

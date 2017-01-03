@@ -41,8 +41,10 @@ class SignupForm extends Component {
           });
           this.context.router.push('/');
         })
-        .catch((data) => {
-          this.setState({ isLoading: false });
+        .catch((errors) => {
+          let emailError = errors.response.data.errors.email[0];
+          let passwordError = errors.response.data.errors.password[0];
+          this.setState({ isLoading: false, errors: { email: emailError, password: passwordError } });
         });
     }
   }

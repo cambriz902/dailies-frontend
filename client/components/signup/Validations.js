@@ -11,6 +11,8 @@ export default function validateInput(data) {
   }
   if(Validator.isEmpty(data.password)) {
     errors.password = 'This field is required';
+  } else if(data.password.length < 6) {
+    errors.password = 'is too short (minimum is 6 characters)';
   }
   if(Validator.isEmpty(data.password_confirmation)) {
     errors.password_confirmation = 'This field is required';

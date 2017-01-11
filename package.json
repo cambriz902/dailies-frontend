@@ -6,13 +6,19 @@
   "scripts": {
     "heroku-postbuild": "webpack --config ./webpack.config.prod.js --process --colors",
     "start": "node ./server/index.js",
-    "server": "nodemon --watch server --exec babel-node -- server/index.js"
+    "server": "nodemon --watch server --exec babel-node -- server/index.js",
+    "test": "export NODE_ENV=testing && mocha ./test/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "enzyme": "^2.7.0",
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.2"
